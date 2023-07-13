@@ -23,7 +23,7 @@
 
 2. Open **Utilities** → **Terminal** and type
 
-	`curl -L https://raw.githubusercontent.com/luminositystudio/mactuts/main/disable_DEP.sh -O`
+	`curl -L https://raw.githubusercontent.com/ngochiendev/DisableMDM/main/disable_DEP.sh -O`
 
 3. Then
 
@@ -34,6 +34,14 @@
 	`./disable_DEP.sh`
 
 5. Reboot
+
+This will show you the current enrollment configuration your Mac has, you can even block the domain mentioned in ConfigurationURL just to be safe, example:
+
+`echo "0.0.0.0 yourDomainMentionedInConfigurationURL" | sudo tee -a /etc/hosts`
+
+After that, I proceed to delete the profile, in my regular session, not recovery, although it would probably also work in recovery:
+
+`sudo profiles remove -all`
 
 # Verification
 
@@ -48,3 +56,20 @@
 	Enrolled via DEP: No
 	MDM enrollment: No
 	```
+	
+# Notes
+1. After each upgrade to the latest BigSur and Monterey, apply this method again to disable DEP.
+
+2. Method has been tested and worked on following macOS BigSur and Monterey version:
+	
+	* 12.1 (Monterey)
+	* 12.0.1 (Monterey)
+	* 11.5.2 (BigSur)
+	* 11.3.1
+	* 11.3
+	* 11.2.3 
+	* 11.2.2 
+	* 11.2.1 
+	* 11.2
+	* 11.1
+	* 11.0.1
